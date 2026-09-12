@@ -6,6 +6,7 @@ module.exports = [
   {
     num: 1,
     icon: "target",
+    color: "#2f5fa8",
     slug: "strategie-entreprise-indicateurs",
     title: "Stratégie d'entreprise et indicateurs",
     accroche: "Poser une vision claire pour votre entreprise, et les indicateurs pour la piloter dans la durée.",
@@ -25,6 +26,7 @@ module.exports = [
   {
     num: 2,
     icon: "leaf",
+    color: "#3b3b9e",
     slug: "rse",
     title: "RSE (responsabilité sociale et environnementale)",
     accroche: "Faire de la RSE un levier de performance et d'attractivité, pas une contrainte administrative de plus.",
@@ -39,6 +41,7 @@ module.exports = [
   {
     num: 3,
     icon: "user-plus",
+    color: "#6a4fa0",
     slug: "recrutement-integration",
     title: "Recrutement et intégration",
     accroche: "Recruter juste, et donner à chaque nouvel arrivant toutes les chances de réussir et de rester.",
@@ -58,6 +61,7 @@ module.exports = [
   {
     num: 4,
     icon: "folder",
+    color: "#7b4fa0",
     slug: "administration-rh",
     title: "Administration RH",
     accroche: "Maîtriser le quotidien administratif RH, sans y laisser tout votre temps de dirigeant.",
@@ -74,6 +78,7 @@ module.exports = [
   {
     num: 5,
     icon: "heart-pulse",
+    color: "#c0392b",
     slug: "sante-travail",
     title: "Santé au travail",
     accroche: "Prévenir avant de subir : risques psycho-sociaux, climat social et qualité de vie au travail.",
@@ -90,6 +95,7 @@ module.exports = [
   {
     num: 6,
     icon: "graduation-cap",
+    color: "#d2691e",
     slug: "gestion-formation",
     title: "Formation",
     accroche: "Faire de la formation un investissement piloté, pas une obligation légale gérée dans l'urgence.",
@@ -111,6 +117,7 @@ module.exports = [
   {
     num: 7,
     icon: "timeline",
+    color: "#c9960c",
     slug: "gestion-carrieres-retraite",
     title: "Gestion des carrières jusqu'à la retraite",
     accroche: "Accompagner chaque étape du parcours professionnel, de l'entretien annuel au départ à la retraite.",
@@ -130,6 +137,7 @@ module.exports = [
   {
     num: 8,
     icon: "scale",
+    color: "#8a5a2a",
     slug: "juridique-irp",
     title: "Juridique et IRP",
     accroche: "Sécuriser vos décisions RH sur des bases juridiques solides, au quotidien comme face aux IRP.",
@@ -149,6 +157,7 @@ module.exports = [
   {
     num: 9,
     icon: "chat-bubbles",
+    color: "#d1428a",
     slug: "communication-interne-climat-social",
     title: "Communication interne et climat social",
     accroche: "Mieux communiquer en interne pour désamorcer les tensions avant qu'elles n'éclatent.",
@@ -165,6 +174,7 @@ module.exports = [
   {
     num: 10,
     icon: "users-team",
+    color: "#4a2f7a",
     slug: "management",
     title: "Management",
     accroche: "Donner à vos managers les clés concrètes pour animer, motiver et faire grandir leurs équipes.",
@@ -186,6 +196,7 @@ module.exports = [
   {
     num: 11,
     icon: "puzzle",
+    color: "#8e44ad",
     slug: "diversite",
     title: "Diversité",
     accroche: "Construire un environnement de travail inclusif, conscient de ses biais et de ses angles morts.",
@@ -203,6 +214,7 @@ module.exports = [
   {
     num: 12,
     icon: "smile",
+    color: "#a67c52",
     slug: "developpement-personnel",
     title: "Développement personnel",
     accroche: "Renforcer la confiance, l'équilibre et la posture de chacun, au bénéfice du collectif.",
@@ -224,6 +236,7 @@ module.exports = [
   {
     num: 13,
     icon: "sparkle",
+    color: "#8a7a1a",
     slug: "performance-par-le-plaisir",
     title: "Performance par le plaisir (PPLP)",
     accroche: "Une performance durable, construite sur le plaisir et l'engagement plutôt que sur la pression.",
@@ -240,6 +253,7 @@ module.exports = [
   {
     num: 14,
     icon: "package",
+    color: "#556b2f",
     slug: "autres",
     title: "Autres",
     accroche: "Des formations transverses, pour les sujets qui ne rentrent dans aucune case.",
@@ -253,6 +267,7 @@ module.exports = [
   {
     num: 15,
     icon: "baby",
+    color: "#1a8a6a",
     slug: "parentalite",
     title: "Parentalité",
     accroche: "Accompagner la parentalité en entreprise, avec des outils concrets et une posture bienveillante.",
@@ -265,6 +280,7 @@ module.exports = [
   {
     num: 16,
     icon: "cpu",
+    color: "#3a3a3a",
     slug: "intelligence-artificielle",
     title: "Intelligence artificielle",
     accroche: "Comprendre et utiliser l'intelligence artificielle concrètement, sans jargon technique inutile.",
@@ -277,6 +293,7 @@ module.exports = [
   {
     num: 17,
     icon: "share",
+    color: "#1a7a8a",
     slug: "reseaux-sociaux",
     title: "Les réseaux sociaux",
     accroche: "Utiliser les réseaux sociaux et le digital pour développer et fidéliser sa clientèle, avec méthode.",

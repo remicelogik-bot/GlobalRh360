@@ -162,6 +162,27 @@ function compassIllustration() {
   </svg>`;
 }
 
+// Roue crantée, reprend le concept visuel de l'ancienne page catalogue
+// formation (thèmes = engrenages d'un même ensemble) que Céline tenait à
+// conserver : un corps de cercle plein avec des dents régulières autour.
+function gearShape(color) {
+  const cx = 85,
+    cy = 85,
+    bodyR = 56,
+    teeth = 8,
+    toothW = 18,
+    toothH = 24;
+  let teethMarkup = "";
+  for (let i = 0; i < teeth; i++) {
+    const angle = (i * 360) / teeth;
+    teethMarkup += `<rect x="${cx - toothW / 2}" y="${cy - bodyR - toothH + 16}" width="${toothW}" height="${toothH}" rx="5" fill="${color}" transform="rotate(${angle} ${cx} ${cy})"/>\n`;
+  }
+  return `<svg viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation" class="gear-shape">
+    ${teethMarkup}
+    <circle cx="${cx}" cy="${cy}" r="${bodyR}" fill="${color}"/>
+  </svg>`;
+}
+
 module.exports = {
   heroHome,
   heroOsmose,
@@ -173,4 +194,5 @@ module.exports = {
   stack,
   checklist,
   compassIllustration,
+  gearShape,
 };

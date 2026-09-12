@@ -61,6 +61,12 @@ function testimonialPlaceholder() {
   );
 }
 
+function chunk(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
 function initials(name) {
   return name
     .split(" ")
@@ -769,16 +775,31 @@ function buildFormationHub() {
 
   <section class="section">
     <div class="container">
-      <div class="theme-grid">
-        ${CATALOG.map(
-          (t) => `<a class="theme-card" href="/entreprises/formation/${t.slug}/">
-          <div class="card-icon-wrap">${icon(t.icon, 22)}</div>
-          <span class="num">${String(t.num).padStart(2, "0")}</span>
-          <h3>${t.title}</h3>
-          <p>${t.accroche}</p>
-        </a>`
-        ).join("\n        ")}
+      <div class="section-header">
+        <h2>17 thématiques, pensées comme un seul ensemble</h2>
+        <p>Recrutement, management, santé au travail, juridique... chaque sujet RH s'articule avec les autres plutôt que d'être traité isolément. C'est cette logique d'ensemble qui structure nos formations.</p>
       </div>
+      <div class="gear-grid">
+        ${chunk(CATALOG, 4)
+          .map(
+            (row, rowIndex) => `<div class="gear-row${rowIndex % 2 === 1 ? " offset" : ""}" style="z-index:${rowIndex + 1};">
+          ${row
+            .map(
+              (t) => `<a class="gear-item" href="/entreprises/formation/${t.slug}/" aria-label="${t.title}">
+            ${illus.gearShape(t.color)}
+            <span class="gear-content">
+              <span class="gear-icon">${icon(t.icon, 24)}</span>
+              <span class="gear-label">${t.title}</span>
+            </span>
+            <span class="visually-hidden">${t.accroche}</span>
+          </a>`
+            )
+            .join("\n          ")}
+        </div>`
+          )
+          .join("\n        ")}
+      </div>
+      <p class="form-note" style="margin-top:2em;">Cliquez sur un thème pour voir ses modules en détail.</p>
     </div>
   </section>
 
@@ -812,7 +833,10 @@ function buildFormationTheme(t) {
   const body = `
   <section class="hero">
     <div class="container">
-      <div class="card-icon-wrap" style="margin-bottom:1em;">${icon(t.icon, 26)}</div>
+      <div class="gear-item gear-item-badge" aria-hidden="true">
+        ${illus.gearShape(t.color)}
+        <span class="gear-content"><span class="gear-icon">${icon(t.icon, 26)}</span></span>
+      </div>
       <p class="eyebrow">Thématique ${String(t.num).padStart(2, "0")} / 17</p>
       <h1>${t.title}</h1>
       <p class="lead">${t.accroche}</p>
