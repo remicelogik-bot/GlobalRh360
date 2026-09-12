@@ -111,6 +111,18 @@ ul { padding-left: 1.2em; }
 .hero-illustration svg { width: 100%; height: auto; max-width: 420px; margin: 0 auto; display: block; }
 .hero-illustration-sm svg { max-width: 300px; }
 
+/* Portrait (photo réelle de Céline) */
+.portrait-frame { position: relative; width: 230px; height: 230px; margin: 0 auto; }
+.portrait-frame::before {
+  content: ""; position: absolute; inset: -16px; background: var(--green-light); border-radius: 50%; z-index: 0;
+}
+.portrait-frame img {
+  position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+  border: 6px solid #fff; box-shadow: var(--shadow); display: block;
+}
+.avatar-photo { background: none; padding: 0; overflow: hidden; }
+.avatar-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
 /* Icon wraps used on cards */
 .card-icon-wrap {
   width: 48px; height: 48px; border-radius: 12px; background: var(--green-light); color: var(--green);

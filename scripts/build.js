@@ -117,7 +117,9 @@ function buildHome() {
           <a class="btn btn-secondary" href="${RDV_HREF}">Réserver 20 minutes</a>
         </div>
       </div>
-      <div class="hero-illustration">${illus.heroHome()}</div>
+      <div class="hero-illustration">
+        <div class="portrait-frame"><img src="/assets/img/celine-rinaudo.png" alt="Céline Rinaudo, fondatrice de GLOBAL RH" width="230" height="230" /></div>
+      </div>
     </div>
   </section>
 
@@ -418,7 +420,11 @@ function buildOsmose() {
         ${team
           .map(
             (m) => `<div class="team-card${m.lead ? " lead" : ""}">
-          <div class="avatar">${initials(m.name)}</div>
+          ${
+            m.lead
+              ? `<div class="avatar avatar-photo"><img src="/assets/img/celine-rinaudo.png" alt="${m.name}" /></div>`
+              : `<div class="avatar">${initials(m.name)}</div>`
+          }
           ${m.lead ? '<span class="role-badge">Premier contact</span><br/>' : ""}
           <h3>${m.name}</h3>
           <p>${m.role}</p>
@@ -426,7 +432,7 @@ function buildOsmose() {
           )
           .join("\n        ")}
       </div>
-      <p class="form-note" style="margin-top:1.5em;">Photos des membres du collectif à intégrer (fichiers image réels à demander à Céline, remplaceront ces avatars).</p>
+      <p class="form-note" style="margin-top:1.5em;">Photo de Céline Rinaudo intégrée. Photos des 9 autres membres du collectif à demander pour remplacer ces avatars.</p>
     </div>
   </section>
 
@@ -871,9 +877,10 @@ function buildAPropos() {
         <p class="eyebrow">À propos</p>
         <h1>Une conviction, portée sur deux terrains.</h1>
         <p class="lead">Je m'appelle Céline Rinaudo. Depuis 25 ans, la ressource humaine est mon métier, sous toutes ses formes, jusqu'à en faire le nom de GLOBAL RH.</p>
-        <div class="avatar" style="width:90px; height:90px; font-size:1.4rem; margin:1em 0 0;">CR</div>
       </div>
-      <div class="hero-illustration hero-illustration-sm">${illus.pathConverge()}</div>
+      <div class="hero-illustration hero-illustration-sm">
+        <div class="portrait-frame" style="width:180px;height:180px;"><img src="/assets/img/celine-rinaudo.png" alt="Céline Rinaudo" width="180" height="180" /></div>
+      </div>
     </div>
   </section>
 
