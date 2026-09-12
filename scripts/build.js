@@ -2,6 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const { layout, jsonLd, SITE_URL, EMAIL, RDV_HREF } = require("./templates");
 const CATALOG = require("./catalog-data");
+const { icon } = require("./icons");
+const illus = require("./illustrations");
 
 const ROOT = path.join(__dirname, "..");
 
@@ -77,38 +79,45 @@ function buildHome() {
       title: "Particuliers",
       desc: "Vous cherchez à y voir clair sur votre avenir professionnel. Bilan de compétences, orientation des jeunes, recherche d'emploi.",
       href: "/particuliers/",
+      icon: "user",
     },
     {
       tag: "OSM'OSE",
       title: "OSM'OSE",
       desc: "Vous entreprenez, seul mais pas isolé. Un collectif de 10 experts, 14 thématiques pour sécuriser votre activité.",
       href: "/osmose/",
+      icon: "users",
     },
     {
       tag: "Kit Starter",
       title: "Kit Starter",
       desc: "Vous vous apprêtez à embaucher votre premier salarié. Contrat, déclarations, obligations : clé en main.",
       href: "/kit-starter/",
+      icon: "clipboard-check",
     },
     {
       tag: "Entreprises",
       title: "Entreprises (PME)",
       desc: "Vous dirigez une PME. Recrutement, prestation RH ponctuelle, formation, ou DRH externalisée à la carte.",
       href: "/entreprises/",
+      icon: "building",
     },
   ];
 
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Conseil · Accompagnement · Formation RH</p>
-      <h1>La RH, sous toutes ses formes, la vôtre.</h1>
-      <p class="lead">Que vous soyez en recherche d'orientation, à la tête d'une PME dans le Var ou en train de lancer votre activité, je vous accompagne avec l'expertise qu'il faut, au moment où il le faut.</p>
-      <blockquote class="pull-quote">Et pour les PME : « La DRH que les PME n'ont pas en interne. »</blockquote>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#par-ou-commencer">Trouver mon accompagnement</a>
-        <a class="btn btn-secondary" href="${RDV_HREF}">Réserver 20 minutes</a>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Conseil · Accompagnement · Formation RH</p>
+        <h1>La RH, sous toutes ses formes, la vôtre.</h1>
+        <p class="lead">Que vous soyez en recherche d'orientation, à la tête d'une PME dans le Var ou en train de lancer votre activité, je vous accompagne avec l'expertise qu'il faut, au moment où il le faut.</p>
+        <blockquote class="pull-quote">Et pour les PME : « La DRH que les PME n'ont pas en interne. »</blockquote>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#par-ou-commencer">Trouver mon accompagnement</a>
+          <a class="btn btn-secondary" href="${RDV_HREF}">Réserver 20 minutes</a>
+        </div>
       </div>
+      <div class="hero-illustration">${illus.heroHome()}</div>
     </div>
   </section>
 
@@ -129,6 +138,7 @@ function buildHome() {
         ${entries
           .map(
             (e) => `<div class="entry-card">
+          <div class="card-icon-wrap">${icon(e.icon, 24)}</div>
           <span class="tag">${e.tag}</span>
           <h3>${e.title}</h3>
           <p>${e.desc}</p>
@@ -230,10 +240,13 @@ function buildHome() {
 function buildParticuliers() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Particuliers</p>
-      <h1>Vous avez besoin d'y voir clair sur votre avenir professionnel.</h1>
-      <p class="lead">Que vous soyez en questionnement de carrière, en reconversion, à un tournant de vos études, ou en recherche active d'emploi, je vous accompagne avec un cadre structuré et une écoute personnalisée, dans le Var ou en visio.</p>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Particuliers</p>
+        <h1>Vous avez besoin d'y voir clair sur votre avenir professionnel.</h1>
+        <p class="lead">Que vous soyez en questionnement de carrière, en reconversion, à un tournant de vos études, ou en recherche active d'emploi, je vous accompagne avec un cadre structuré et une écoute personnalisée, dans le Var ou en visio.</p>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.compassIllustration()}</div>
     </div>
   </section>
 
@@ -330,9 +343,9 @@ function buildParticuliers() {
 
 function buildOsmose() {
   const familles = [
-    { name: "Développer son activité", items: ["Stratégie d'entreprise", "Savoir se vendre", "Gestion des réseaux sociaux", "RSE"] },
-    { name: "Sécuriser son activité", items: ["Structure juridique et comptable", "Gestion administrative", "Prévoyance", "RC Pro", "Cybersécurité", "CGV et RGPD"] },
-    { name: "Prendre soin de soi et de son image", items: ["Image de soi", "Massage et points de pression", "Santé physique et mentale", "Gestion du temps et des priorités"] },
+    { name: "Développer son activité", icon: "trending-up", items: ["Stratégie d'entreprise", "Savoir se vendre", "Gestion des réseaux sociaux", "RSE"] },
+    { name: "Sécuriser son activité", icon: "shield", items: ["Structure juridique et comptable", "Gestion administrative", "Prévoyance", "RC Pro", "Cybersécurité", "CGV et RGPD"] },
+    { name: "Prendre soin de soi et de son image", icon: "heart", items: ["Image de soi", "Massage et points de pression", "Santé physique et mentale", "Gestion du temps et des priorités"] },
   ];
   const team = [
     { name: "Céline RINAUDO", role: "Premier contact · stratégie · gestion du temps et des priorités · RSE · santé physique et mentale", lead: true },
@@ -349,12 +362,15 @@ function buildOsmose() {
 
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Le collectif</p>
-      <h1>Entreprendre seul, sans être seul sur tout le reste.</h1>
-      <p class="lead">OSM'OSE réunit 10 experts autour des auto-entrepreneurs, pour sécuriser et structurer chaque dimension de leur activité, au-delà de leur seul métier.</p>
-      <blockquote class="pull-quote">« Pour entreprendre et réussir »</blockquote>
-      <div class="hero-actions"><a class="btn btn-primary" href="#thematiques">Découvrir les 14 thématiques</a></div>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Le collectif</p>
+        <h1>Entreprendre seul, sans être seul sur tout le reste.</h1>
+        <p class="lead">OSM'OSE réunit 10 experts autour des auto-entrepreneurs, pour sécuriser et structurer chaque dimension de leur activité, au-delà de leur seul métier.</p>
+        <blockquote class="pull-quote">« Pour entreprendre et réussir »</blockquote>
+        <div class="hero-actions"><a class="btn btn-primary" href="#thematiques">Découvrir les 14 thématiques</a></div>
+      </div>
+      <div class="hero-illustration">${illus.heroOsmose()}</div>
     </div>
   </section>
 
@@ -382,6 +398,7 @@ function buildOsmose() {
         ${familles
           .map(
             (f) => `<div class="card">
+          <div class="card-icon-wrap">${icon(f.icon, 24)}</div>
           <h3>${f.name}</h3>
           <ul class="check-list">${f.items.map((i) => `<li>${i}</li>`).join("")}</ul>
         </div>`
@@ -468,11 +485,14 @@ function buildOsmose() {
 function buildKitStarter() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Première embauche</p>
-      <h1>Embaucher votre premier salarié, sans craindre de faire un faux pas.</h1>
-      <p class="lead">Contrat, déclarations, obligations légales, mise en place administrative : je vous accompagne pas à pas dans cette étape clé, pour que votre première embauche parte sur de bonnes bases.</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="#tarifs">Découvrir le Kit Starter</a></div>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Première embauche</p>
+        <h1>Embaucher votre premier salarié, sans craindre de faire un faux pas.</h1>
+        <p class="lead">Contrat, déclarations, obligations légales, mise en place administrative : je vous accompagne pas à pas dans cette étape clé, pour que votre première embauche parte sur de bonnes bases.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#tarifs">Découvrir le Kit Starter</a></div>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.checklist()}</div>
     </div>
   </section>
 
@@ -608,12 +628,15 @@ function buildKitStarter() {
 function buildEntreprises() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Entreprises · PME</p>
-      <h1>Un appui RH à la hauteur de vos enjeux, sans le coût d'un poste à temps plein.</h1>
-      <p class="lead">Recrutement d'un poste clé, besoin RH ponctuel, pilotage RH au long cours, ou montée en compétences de vos équipes : je m'adapte à la taille de votre structure et à l'intensité de votre besoin.</p>
-      <blockquote class="pull-quote">« La DRH que les PME n'ont pas en interne »</blockquote>
-      ${priceRangePlaceholder()}
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Entreprises · PME</p>
+        <h1>Un appui RH à la hauteur de vos enjeux, sans le coût d'un poste à temps plein.</h1>
+        <p class="lead">Recrutement d'un poste clé, besoin RH ponctuel, pilotage RH au long cours, ou montée en compétences de vos équipes : je m'adapte à la taille de votre structure et à l'intensité de votre besoin.</p>
+        <blockquote class="pull-quote">« La DRH que les PME n'ont pas en interne »</blockquote>
+        ${priceRangePlaceholder()}
+      </div>
+      <div class="hero-illustration">${illus.heroEntreprises()}</div>
     </div>
   </section>
 
@@ -727,11 +750,14 @@ function buildEntreprises() {
 function buildFormationHub() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Entreprises · Formation</p>
-      <h1>17 thématiques, plus de 120 modules de formation RH.</h1>
-      <p class="lead">Toutes les formations de FORM RH, organisme certifié Qualiopi, présentées ici module par module plutôt qu'enfouies dans un PDF. Formations en intra ou inter-entreprises, dans le Var, en PACA ou à distance.</p>
-      <div class="placeholder-block" style="margin-top:1em;"><strong>Plaquette PDF</strong>[Lien vers la plaquette complète du catalogue en PDF à ajouter, en complément de ces pages, pas en remplacement]</div>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Entreprises · Formation</p>
+        <h1>17 thématiques, plus de 120 modules de formation RH.</h1>
+        <p class="lead">Toutes les formations de FORM RH, organisme certifié Qualiopi, présentées ici module par module plutôt qu'enfouies dans un PDF. Formations en intra ou inter-entreprises, dans le Var, en PACA ou à distance.</p>
+        <div class="placeholder-block" style="margin-top:1em;"><strong>Plaquette PDF</strong>[Lien vers la plaquette complète du catalogue en PDF à ajouter, en complément de ces pages, pas en remplacement]</div>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.stack()}</div>
     </div>
   </section>
 
@@ -740,6 +766,7 @@ function buildFormationHub() {
       <div class="theme-grid">
         ${CATALOG.map(
           (t) => `<a class="theme-card" href="/entreprises/formation/${t.slug}/">
+          <div class="card-icon-wrap">${icon(t.icon, 22)}</div>
           <span class="num">${String(t.num).padStart(2, "0")}</span>
           <h3>${t.title}</h3>
           <p>${t.accroche}</p>
@@ -779,6 +806,7 @@ function buildFormationTheme(t) {
   const body = `
   <section class="hero">
     <div class="container">
+      <div class="card-icon-wrap" style="margin-bottom:1em;">${icon(t.icon, 26)}</div>
       <p class="eyebrow">Thématique ${String(t.num).padStart(2, "0")} / 17</p>
       <h1>${t.title}</h1>
       <p class="lead">${t.accroche}</p>
@@ -838,11 +866,14 @@ function buildFormationTheme(t) {
 function buildAPropos() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">À propos</p>
-      <h1>Une conviction, portée sur deux terrains.</h1>
-      <p class="lead">Je m'appelle Céline Rinaudo. Depuis 25 ans, la ressource humaine est mon métier, sous toutes ses formes, jusqu'à en faire le nom de GLOBAL RH.</p>
-      <div class="avatar" style="width:110px; height:110px; font-size:1.7rem; margin:1em 0 0;">CR</div>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">À propos</p>
+        <h1>Une conviction, portée sur deux terrains.</h1>
+        <p class="lead">Je m'appelle Céline Rinaudo. Depuis 25 ans, la ressource humaine est mon métier, sous toutes ses formes, jusqu'à en faire le nom de GLOBAL RH.</p>
+        <div class="avatar" style="width:90px; height:90px; font-size:1.4rem; margin:1em 0 0;">CR</div>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.pathConverge()}</div>
     </div>
   </section>
 
@@ -888,10 +919,13 @@ function buildAPropos() {
 function buildContact() {
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Contact</p>
-      <h1>Une question, un projet, une envie d'échanger ?</h1>
-      <p class="lead">Chaque parcours est différent. Écrivez-moi ce qui vous amène : je reviens vers vous personnellement, pour comprendre votre situation avant de vous orienter vers la formule la plus adaptée.</p>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Une question, un projet, une envie d'échanger ?</h1>
+        <p class="lead">Chaque parcours est différent. Écrivez-moi ce qui vous amène : je reviens vers vous personnellement, pour comprendre votre situation avant de vous orienter vers la formule la plus adaptée.</p>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.envelope()}</div>
     </div>
   </section>
 
@@ -982,10 +1016,13 @@ function buildZoneIntervention() {
   const zones = ["Le Val", "Toulon", "Draguignan", "Brignoles", "Var (83)", "Alpes-Maritimes (06)", "Bouches-du-Rhône (13)", "Provence-Alpes-Côte d'Azur", "Visio, partout en France"];
   const body = `
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Zone d'intervention</p>
-      <h1>Un accompagnement RH dans le Var, en PACA, ou où que vous soyez.</h1>
-      <p class="lead">Basée à Le Val (83), Céline Rinaudo intervient en présentiel dans le Var et en région Provence-Alpes-Côte d'Azur, et partout ailleurs en visioconférence.</p>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Zone d'intervention</p>
+        <h1>Un accompagnement RH dans le Var, en PACA, ou où que vous soyez.</h1>
+        <p class="lead">Basée à Le Val (83), Céline Rinaudo intervient en présentiel dans le Var et en région Provence-Alpes-Côte d'Azur, et partout ailleurs en visioconférence.</p>
+      </div>
+      <div class="hero-illustration hero-illustration-sm">${illus.pins()}</div>
     </div>
   </section>
 
